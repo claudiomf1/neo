@@ -4,7 +4,7 @@ import { dadosct } from "./FormCliente-js";
 // import "./FormCliente-js.js";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import * as SelectSourch from "../SelectSearch/SelectSearch";
+import SelectSourch from "../SelectSearch/SelectSearch";
 
 let intialData = [
   ["Selecione"],
@@ -17,10 +17,12 @@ let intialData = [
   ["Felicidade"],
 ];
 retorna_dadosct();
+
 //let initialData = [...dadosct];
 //const initialData = [...retorna_dadosct()];
 function FormCliente() {
   //console.log(dadosct);
+
   return (
     <Form>
       <div id="CaixaMsg">

@@ -1,5 +1,5 @@
 // import "./style.scss";
-// import "./bootstrap.js";
+
 import { Button } from "react-bootstrap";
 import { Dropdown } from "react-bootstrap";
 function About() {

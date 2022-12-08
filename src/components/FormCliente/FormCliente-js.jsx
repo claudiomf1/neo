@@ -459,12 +459,12 @@ async function setDataForSearchCliente() {
       range: "Clientes!A6:C",
     });
 
-    return reponse;
+    console.log(response.result.values);
+    return response;
   }
-
   console.log("gapi is not defined :>> ", typeof gapi);
-  console.log(response.result.values);
 }
+//----------------------------------------------------------------------------------
 export function retorna_dadosct() {
   return setDataForSearchCliente();
 }
