@@ -5,8 +5,8 @@ import { dadosct } from './FormCliente-js'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import SelectSourch from '../SelectSearch/SelectSearch'
-const useGoogleSheets = require('use-google-sheets')
-//import useGoogleSheets from 'use-google-sheets'
+
+import useGoogleSheets from 'use-google-sheets'
 import { useState } from 'react'
 const { VITE_API_KEY, VITE_SHEET_ID } = import.meta.env
 //require('use-google-sheets')
