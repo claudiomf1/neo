@@ -1,146 +1,159 @@
-let CampoCliente = document.getElementById('Cliente')
-let CampoCnpj = document.getElementById('Cnpj')
-let CampoContato = document.getElementById('Contato')
-let CampoRua = document.getElementById('Rua')
-let CampoBairro = document.getElementById('Bairro')
-let CampoCidade = document.getElementById('Cidade')
-let CampoEstado = document.getElementById('Estado')
-let CampoObs = document.getElementById('Obs')
-let CampoListaCliente = document.getElementById('ListaCliente')
-
-function CaixaAlta(e) {
-  let ss = e.target.selectionStart
-  let se = e.target.selectionEnd
-  e.target.value = e.target.value.toUpperCase()
-  e.target.selectionStart = ss
-  e.target.selectionEnd = se
+let CampoCliente;
+let CampoCnpj;
+let CampoContato;
+let CampoRua;
+let CampoBairro;
+let CampoCidade;
+let CampoEstado;
+let CampoObs;
+let CampoListaCliente;
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", () => {
+    CampoCliente = document.getElementById("Cliente");
+    CampoCnpj = document.getElementById("Cnpj");
+    CampoContato = document.getElementById("Contato");
+    CampoRua = document.getElementById("Rua");
+    CampoBairro = document.getElementById("Bairro");
+    CampoCidade = document.getElementById("Cidade");
+    CampoEstado = document.getElementById("Estado");
+    CampoObs = document.getElementById("Obs");
+    CampoListaCliente = document.getElementById("ListaCliente");
+  });
 }
 
-let CaixaMsg = document.getElementById('CaixaMsg')
-let TituloMsg = document.getElementById('TituloMsg')
-let CorpoMsg = document.getElementById('CorpoMsg')
-let RodapeMsg = document.getElementById('RodapeMsg')
+function CaixaAlta(e) {
+  let ss = e.target.selectionStart;
+  let se = e.target.selectionEnd;
+  e.target.value = e.target.value.toUpperCase();
+  e.target.selectionStart = ss;
+  e.target.selectionEnd = se;
+}
+
+let CaixaMsg = document.getElementById("CaixaMsg");
+let TituloMsg = document.getElementById("TituloMsg");
+let CorpoMsg = document.getElementById("CorpoMsg");
+let RodapeMsg = document.getElementById("RodapeMsg");
 let BtnFechar =
-  '<button class = "orange" onclick= "Fechar()" style = "cursor:pointer" ><b> <font color= "black" size = "5">Fechar</font></b></button>'
+  '<button class = "orange" onclick= "Fechar()" style = "cursor:pointer" ><b> <font color= "black" size = "5">Fechar</font></b></button>';
 
 function caixaMsgbox(m) {
-  CaixaMsg.style.display = 'block'
+  CaixaMsg.style.display = "block";
 
-  TituloMsg.innerHTML = 'AVISO'
-  CorpoMsg.innerHTML = m
-  RodapeMsg.innerHTML = BtnFechar
+  TituloMsg.innerHTML = "AVISO";
+  CorpoMsg.innerHTML = m;
+  RodapeMsg.innerHTML = BtnFechar;
 }
 
 function Fechar() {
-  CaixaMsg.style.display = 'none'
+  CaixaMsg.style.display = "none";
 }
 
-let Confirm = new Mensagem()
+let Confirm = new Mensagem();
 
 function Mensagem() {
   this.Executar = function () {
-    CaixaMsg.style.display = 'block'
+    CaixaMsg.style.display = "block";
 
-    TituloMsg.innerHTML = 'AVISO'
-    CorpoMsg.innerHTML = 'DESEJA REALMENTE EXCLUIRRRR?'
+    TituloMsg.innerHTML = "AVISO";
+    CorpoMsg.innerHTML = "DESEJA REALMENTE EXCLUIRRRR?";
 
     let BtnSim =
-      '<button class = "green" onclick = "Confirm.Sim()" style = "cursor:pointer" ><b><font color = "black" size = "5">Sim</font></b></button>'
+      '<button class = "green" onclick = "Confirm.Sim()" style = "cursor:pointer" ><b><font color = "black" size = "5">Sim</font></b></button>';
 
     let BtnNao =
-      '<button class = "red" onclick = "Confirm.Nao()" style = "cursor:pointer" ><b><font color = "black"  size = "5">Não</font></b></button>'
+      '<button class = "red" onclick = "Confirm.Nao()" style = "cursor:pointer" ><b><font color = "black"  size = "5">Não</font></b></button>';
 
-    RodapeMsg.innerHTML = BtnSim + BtnNao
-  }
+    RodapeMsg.innerHTML = BtnSim + BtnNao;
+  };
 
   this.Nao = function () {
-    Fechar()
-  }
+    Fechar();
+  };
 
   this.Sim = function () {
-    let nomeCliente = CampoListaCliente.value
+    let nomeCliente = CampoListaCliente.value;
 
-    if (nomeCliente == '' || nomeCliente == 'Escolha um Cliente') {
-      CorpoMsg.innerHTML = 'CANCELADO. CAMPO LISTA NÃO PODE SER VAZIO!'
-      RodapeMsg.innerHTML = BtnFechar
-      return
+    if (nomeCliente == "" || nomeCliente == "Escolha um Cliente") {
+      CorpoMsg.innerHTML = "CANCELADO. CAMPO LISTA NÃO PODE SER VAZIO!";
+      RodapeMsg.innerHTML = BtnFechar;
+      return;
     }
 
-    ExcluirCliente()
-  }
+    ExcluirCliente();
+  };
 }
 
 function MascaraCnpj() {
-  let CNPJ = CampoCnpj.value
+  let CNPJ = CampoCnpj.value;
 
   if (CNPJ.length == 2) {
-    CNPJ = CNPJ + '.'
-    CampoCnpj.value = CNPJ
-    return true
+    CNPJ = CNPJ + ".";
+    CampoCnpj.value = CNPJ;
+    return true;
   }
 
   if (CNPJ.length == 6) {
-    CNPJ = CNPJ + '.'
-    CampoCnpj.value = CNPJ
-    return true
+    CNPJ = CNPJ + ".";
+    CampoCnpj.value = CNPJ;
+    return true;
   }
 
   if (CNPJ.length == 10) {
-    CNPJ = CNPJ + '/'
-    CampoCnpj.value = CNPJ
-    return true
+    CNPJ = CNPJ + "/";
+    CampoCnpj.value = CNPJ;
+    return true;
   }
 
   if (CNPJ.length == 15) {
-    CNPJ = CNPJ + '-'
-    CampoCnpj.value = CNPJ
-    return true
+    CNPJ = CNPJ + "-";
+    CampoCnpj.value = CNPJ;
+    return true;
   }
 }
 
 function MascaraTelefone() {
   //let CampoTel = document.getElementById("Contato");
-  let Tel = CampoContato.value
+  let Tel = CampoContato.value;
 
   if (Tel.length == 1) {
-    Tel = '(' + Tel
-    CampoContato.value = Tel
-    return true
+    Tel = "(" + Tel;
+    CampoContato.value = Tel;
+    return true;
   }
 
   if (Tel.length == 3) {
-    Tel = Tel + ')'
-    CampoContato.value = Tel
-    return true
+    Tel = Tel + ")";
+    CampoContato.value = Tel;
+    return true;
   }
 
   if (Tel.length == 9) {
-    Tel = Tel + '-'
-    CampoContato.value = Tel
-    return true
+    Tel = Tel + "-";
+    CampoContato.value = Tel;
+    return true;
   }
 }
 
 function VerificarCliente() {
-  let listaCliente = CampoListaCliente.value
+  let listaCliente = CampoListaCliente.value;
   // alert("teste ")
-  let nomeCliente = CampoCliente.value
+  let nomeCliente = CampoCliente.value;
   if (listaCliente.trim().length != 0) {
-    return false
+    return false;
   }
 
-  google.script.run.withSuccessHandler(Retorno).VerificarCliente(nomeCliente)
+  google.script.run.withSuccessHandler(Retorno).VerificarCliente(nomeCliente);
 
   function Retorno(r) {
-    if (r == 'CLIENTE JÁ CADASTRADO!') {
-      if (CampoCliente.value != '') {
-        CampoCliente.focus()
-        let m = r
-        caixaMsgbox(m)
+    if (r == "CLIENTE JÁ CADASTRADO!") {
+      if (CampoCliente.value != "") {
+        CampoCliente.focus();
+        let m = r;
+        caixaMsgbox(m);
       }
 
-      CampoCliente.value = ''
-      CampoCliente.focus()
+      CampoCliente.value = "";
+      CampoCliente.focus();
     }
   }
 }
@@ -148,30 +161,30 @@ function VerificarCliente() {
 // document.getElementById("btnSalvar").addEventListener("click", SalvarCliente);
 //--------------------------------------------------------------------------------------------
 function SalvarCliente() {
-  let Cliente = CampoCliente.value
-  let Cnpj = CampoCnpj.value
-  let Contato = CampoContato.value
-  let Rua = CampoRua.value
-  let Bairro = CampoBairro.value
-  let Cidade = CampoCidade.value
-  let Estado = CampoEstado.value
+  let Cliente = CampoCliente.value;
+  let Cnpj = CampoCnpj.value;
+  let Contato = CampoContato.value;
+  let Rua = CampoRua.value;
+  let Bairro = CampoBairro.value;
+  let Cidade = CampoCidade.value;
+  let Estado = CampoEstado.value;
 
-  Cliente = Cliente.trim()
-  Cnpj = Cnpj.trim()
-  Contato = Contato.trim()
-  Cidade = Cidade.trim()
+  Cliente = Cliente.trim();
+  Cnpj = Cnpj.trim();
+  Contato = Contato.trim();
+  Cidade = Cidade.trim();
 
   if (
-    Cliente == '' ||
-    Cnpj == '' ||
-    Contato == '' ||
-    Bairro == '' ||
-    Cidade == '' ||
-    Estado == ''
+    Cliente == "" ||
+    Cnpj == "" ||
+    Contato == "" ||
+    Bairro == "" ||
+    Cidade == "" ||
+    Estado == ""
   ) {
-    let m = 'PRECISA PREENCHER TODOS OS CAMPOS!'
-    caixaMsgbox(m)
-    return false
+    let m = "PRECISA PREENCHER TODOS OS CAMPOS!";
+    caixaMsgbox(m);
+    return false;
   }
 
   let Dados = {
@@ -182,17 +195,17 @@ function SalvarCliente() {
     Bairro: Bairro,
     Cidade: Cidade,
     Estado: Estado,
-    Obs: CampoObs.value
-  }
+    Obs: CampoObs.value,
+  };
 
-  google.script.run.withSuccessHandler(Salvar).SalvarCliente(Dados)
+  google.script.run.withSuccessHandler(Salvar).SalvarCliente(Dados);
 
   function Salvar(r) {
-    let m = r
-    caixaMsgbox(m)
+    let m = r;
+    caixaMsgbox(m);
 
-    if (r != 'CLIENTE JÁ CADASTRADO!') {
-      Limpar()
+    if (r != "CLIENTE JÁ CADASTRADO!") {
+      Limpar();
     }
   }
 }
@@ -200,87 +213,87 @@ function SalvarCliente() {
 // document.getElementById("ListaCliente").addEventListener("input", Pesquisar);
 
 function Pesquisar() {
-  let nomeCliente = CampoListaCliente.value
+  let nomeCliente = CampoListaCliente.value;
 
-  google.script.run.withSuccessHandler(Carregar).PesquisarCliente(nomeCliente)
+  google.script.run.withSuccessHandler(Carregar).PesquisarCliente(nomeCliente);
 }
 
 function Carregar(r) {
-  if (r != 'CLIENTE NÃO ENCONTRADO!') {
-    CampoCliente.value = r[0]
-    M.updateTextFields()
-    CampoCnpj.value = r[1]
-    M.updateTextFields()
-    CampoContato.value = r[2]
-    M.updateTextFields()
-    CampoRua.value = r[3]
-    M.updateTextFields()
-    CampoBairro.value = r[4]
-    M.updateTextFields()
-    CampoCidade.value = r[5]
-    M.updateTextFields()
-    CampoEstado.value = r[6]
-    M.updateTextFields()
-    CampoObs.value = r[7]
-    M.updateTextFields()
-    CampoListaCliente.value = r[0]
+  if (r != "CLIENTE NÃO ENCONTRADO!") {
+    CampoCliente.value = r[0];
+    M.updateTextFields();
+    CampoCnpj.value = r[1];
+    M.updateTextFields();
+    CampoContato.value = r[2];
+    M.updateTextFields();
+    CampoRua.value = r[3];
+    M.updateTextFields();
+    CampoBairro.value = r[4];
+    M.updateTextFields();
+    CampoCidade.value = r[5];
+    M.updateTextFields();
+    CampoEstado.value = r[6];
+    M.updateTextFields();
+    CampoObs.value = r[7];
+    M.updateTextFields();
+    CampoListaCliente.value = r[0];
   } else {
-    let m = r
-    caixaMsgbox(m)
+    let m = r;
+    caixaMsgbox(m);
   }
 }
 
 // document.getElementById("btnLimpar").addEventListener("click", Limpar);
 
 function Limpar() {
-  CampoCliente.value = ''
-  CampoCnpj.value = ''
-  CampoContato.value = ''
-  CampoRua.value = ''
-  CampoBairro.value = ''
-  CampoCidade.value = ''
-  CampoEstado.value = ''
-  CampoObs.value = ''
-  CampoListaCliente.value = ''
-  AtualizarClientes()
+  CampoCliente.value = "";
+  CampoCnpj.value = "";
+  CampoContato.value = "";
+  CampoRua.value = "";
+  CampoBairro.value = "";
+  CampoCidade.value = "";
+  CampoEstado.value = "";
+  CampoObs.value = "";
+  CampoListaCliente.value = "";
+  AtualizarClientes();
 }
 
 // document.getElementById("btnEditar").addEventListener("click", EditarCliente);
 
 function EditarCliente() {
-  let nomeCliente = CampoListaCliente.value
-  let Cliente = CampoCliente.value
-  let Cnpj = CampoCnpj.value
-  let Contato = CampoContato.value
-  let Rua = CampoRua.value
-  let Bairro = CampoBairro.value
-  let Cidade = CampoCidade.value
-  let Estado = CampoEstado.value
-  let ListaCliente = CampoListaCliente.value
+  let nomeCliente = CampoListaCliente.value;
+  let Cliente = CampoCliente.value;
+  let Cnpj = CampoCnpj.value;
+  let Contato = CampoContato.value;
+  let Rua = CampoRua.value;
+  let Bairro = CampoBairro.value;
+  let Cidade = CampoCidade.value;
+  let Estado = CampoEstado.value;
+  let ListaCliente = CampoListaCliente.value;
 
-  Cliente = Cliente.trim()
-  Cnpj = Cnpj.trim()
-  Contato = Contato.trim()
-  Cidade = Cidade.trim()
+  Cliente = Cliente.trim();
+  Cnpj = Cnpj.trim();
+  Contato = Contato.trim();
+  Cidade = Cidade.trim();
 
-  if (nomeCliente == '' || nomeCliente == 'Escolha um Cliente') {
-    let m = 'PRECISA SELECIONAR CLIENTE NA LISTA!'
-    caixaMsgbox(m)
-    return
+  if (nomeCliente == "" || nomeCliente == "Escolha um Cliente") {
+    let m = "PRECISA SELECIONAR CLIENTE NA LISTA!";
+    caixaMsgbox(m);
+    return;
   }
 
   if (
-    Cliente == '' ||
-    Cnpj == '' ||
-    Contato == '' ||
-    Bairro == '' ||
-    Cidade == '' ||
-    Estado == '' ||
-    ListaCliente == ''
+    Cliente == "" ||
+    Cnpj == "" ||
+    Contato == "" ||
+    Bairro == "" ||
+    Cidade == "" ||
+    Estado == "" ||
+    ListaCliente == ""
   ) {
-    let m = 'PRECISA PREENCHER TODOS OS CAMPOS!'
-    caixaMsgbox(m)
-    return
+    let m = "PRECISA PREENCHER TODOS OS CAMPOS!";
+    caixaMsgbox(m);
+    return;
   }
 
   let Dados = {
@@ -292,109 +305,116 @@ function EditarCliente() {
     Bairro: Bairro,
     Cidade: Cidade,
     Estado: Estado,
-    Obs: CampoObs.value
-  }
+    Obs: CampoObs.value,
+  };
 
-  google.script.run.withSuccessHandler(Retorno).EditarCliente(Dados)
+  google.script.run.withSuccessHandler(Retorno).EditarCliente(Dados);
 
   function Retorno(r) {
-    let m = r
-    caixaMsgbox(m)
+    let m = r;
+    caixaMsgbox(m);
 
-    if (r != 'CLIENTE NÃO ENCONTRADO!') {
-      Limpar()
+    if (r != "CLIENTE NÃO ENCONTRADO!") {
+      Limpar();
     }
   }
 }
 
 function ExcluirCliente() {
-  let nomeCliente = CampoListaCliente.value
+  let nomeCliente = CampoListaCliente.value;
 
-  google.script.run.withSuccessHandler(Excluir).ExcluirCliente(nomeCliente)
+  google.script.run.withSuccessHandler(Excluir).ExcluirCliente(nomeCliente);
 
   function Excluir(r) {
-    if (r == 'EXCLUIDO COM SUCESSO!') {
-      let m = r
-      caixaMsgbox(m)
-      Limpar()
+    if (r == "EXCLUIDO COM SUCESSO!") {
+      let m = r;
+      caixaMsgbox(m);
+      Limpar();
     } else {
-      let m = r
-      caixaMsgbox(m)
+      let m = r;
+      caixaMsgbox(m);
     }
   }
 }
 //---------------------------------------------------
 function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms))
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 //------------------------------
 function AtualizarClientes() {
   while (CampoListaCliente.length) {
-    CampoListaCliente.remove(0)
+    CampoListaCliente.remove(0);
   }
 
-  let NovaOpcao = document.createElement('option')
-  let Texto = document.createTextNode('Escolha um Cliente')
-  NovaOpcao.appendChild(Texto)
-  CampoListaCliente.insertBefore(NovaOpcao, CampoListaCliente.lastChild)
+  let NovaOpcao = document.createElement("option");
+  let Texto = document.createTextNode("Escolha um Cliente");
+  NovaOpcao.appendChild(Texto);
+  CampoListaCliente.insertBefore(NovaOpcao, CampoListaCliente.lastChild);
 
-  CampoListaCliente.options[0].disabled = true
+  CampoListaCliente.options[0].disabled = true;
 
-  google.script.run.withSuccessHandler(Carregar).AtualizarListaClientes()
+  google.script.run.withSuccessHandler(Carregar).AtualizarListaClientes();
 
   async function Carregar(clientes) {
     clientes.forEach(function (r) {
-      let NovaOpcao = document.createElement('option')
-      let Texto = document.createTextNode(r[1])
-      NovaOpcao.appendChild(Texto)
-      CampoListaCliente.insertBefore(NovaOpcao, CampoListaCliente.lastChild)
-    })
+      let NovaOpcao = document.createElement("option");
+      let Texto = document.createTextNode(r[1]);
+      NovaOpcao.appendChild(Texto);
+      CampoListaCliente.insertBefore(NovaOpcao, CampoListaCliente.lastChild);
+    });
   }
 }
 
 // document.addEventListener("DOMContentLoaded", PesquisaAbrir);
 
 function PesquisaAbrir() {
-  if (CampoListaCliente.value != '') {
-    Pesquisar()
+  if (CampoListaCliente.value != "") {
+    Pesquisar();
   }
 }
 
 // document.getElementById("iconeCliente").addEventListener("click", FormFiltro);
 
 function FormFiltro() {
-  let Cliente = CampoListaCliente.value
-  let Cnpj = CampoCnpj.value
-  let Contato = CampoContato.value
-  let Estado = CampoEstado.value
-  let Cidade = CampoCidade.value
+  let Cliente = CampoListaCliente.value;
+  let Cnpj = CampoCnpj.value;
+  let Contato = CampoContato.value;
+  let Estado = CampoEstado.value;
+  let Cidade = CampoCidade.value;
 
-  google.script.run.withSuccessHandler().FormFiltroClientes(Cliente, Cnpj, Contato, Estado, Cidade)
+  google.script.run
+    .withSuccessHandler()
+    .FormFiltroClientes(Cliente, Cnpj, Contato, Estado, Cidade);
 }
-export let dadosct = []
+export let dadosct = [];
 
-let tokenClient
-let gapiInited = false
-let gisInited = false
-const CLIENT_ID = '167620078508-hhncerbeqjk9s1eo7f5ah71fekljd1ob.apps.googleusercontent.com'
-const API_KEY = 'AIzaSyDs11gmvAQb2xdRL_fWVvhrTRKyz4NoZ5w'
+let tokenClient;
+let gapiInited = false;
+let gisInited = false;
+const CLIENT_ID =
+  "167620078508-hhncerbeqjk9s1eo7f5ah71fekljd1ob.apps.googleusercontent.com";
+const API_KEY = "AIzaSyDs11gmvAQb2xdRL_fWVvhrTRKyz4NoZ5w";
 
 // Discovery doc URL for APIs used by the quickstart
-const DISCOVERY_DOC = 'https://sheets.googleapis.com/$discovery/rest?version=v4'
-const SCOPES = 'https://www.googleapis.com/auth/spreadsheets.readonly'
+const DISCOVERY_DOC =
+  "https://sheets.googleapis.com/$discovery/rest?version=v4";
+const SCOPES = "https://www.googleapis.com/auth/spreadsheets.readonly";
 
 //-------------------------------------------
-const scripts = ['https://apis.google.com/js/api.js', 'https://accounts.google.com/gsi/client']
+const scripts = [
+  "https://apis.google.com/js/api.js",
+  "https://accounts.google.com/gsi/client",
+];
 function loadScripts(scripts) {
-  let script = scripts.shift()
+  let script = scripts.shift();
 
-  let el = document.createElement('script')
-  el.src = script
-  document.body.appendChild(el)
+  let el = document.createElement("script");
+  el.src = script;
+  document.body.appendChild(el);
   if (scripts.length) {
-    loadScripts(scripts)
+    loadScripts(scripts);
   } else {
-    console.log('run app')
+    console.log("run app");
   }
   // el.onload = function (script) {
   //   // console.log(scripts.shift() + " loaded!");
@@ -439,7 +459,7 @@ function loadScripts(scripts) {
 // }
 
 //import GoogleAuth from 'google-auth-library/build/src/auth/googleauth'
-import React, { Component } from 'react'
+//import Rea } from "react";
 //import GoogleAuth from 'google-auth-library'
 //import GoogleAuth from 'google-auth-library/build/src/auth/googleauth'
 
@@ -454,22 +474,22 @@ import React, { Component } from 'react'
 
 async function setDataForSearchCliente(gapi) {
   // console.log('token:-> ', token)
-  console.log('gapi.client :>> ', gapi)
-  let response
-  if (typeof gapi !== 'undefined') {
+  console.log("gapi.client :>> ", gapi);
+  let response;
+  if (typeof gapi !== "undefined") {
     response = await gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: '1DHcDn2eTzk6VNa3x3fhQ1X_RgTpGHfV09VWxHD2gk54',
-      range: 'Clientes!A6:C'
-    })
+      spreadsheetId: "1DHcDn2eTzk6VNa3x3fhQ1X_RgTpGHfV09VWxHD2gk54",
+      range: "Clientes!A6:C",
+    });
 
     // console.log(response.result.values)
     // return response
   }
-  console.log('response', response)
+  console.log("response", response);
 }
 //----------------------------------------------------------------------------------
 export function retorna_dadosct(gapi) {
-  return setDataForSearchCliente(gapi)
+  return setDataForSearchCliente(gapi);
 }
 
 // async function setDataForSearchCliente() {

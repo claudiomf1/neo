@@ -25,5 +25,6 @@ function About() {
     </div>
   );
 }
-
+//clasp create --rootDir "./dist/apps-script" --type webapp
+//"build": "vite build --config vite.config.js --no-minify"
 export default About;

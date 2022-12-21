@@ -3,9 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "main": "src/main.jsx",
   "scripts": {
     "dev": "vite --https=false",
-    "build": "vite build --config vite.config.js",
+    "build": "rm -r dist/apps-scripts && rsync -a appsscript.json dist/apps-scripts/ && parcel build src/main.jsx --no-minify --public-url ./ --out-dir dist/apps-scripts --cache-dir .cache",
     "preview": "vite preview",
     "refresh": "rm -rf node_modules && npm i"
   },
@@ -13,6 +14,7 @@
     "@snyk/protect": "^1.1071.0",
     "audit": "^0.0.6",
     "axios": "^1.2.1",
+    "babel-preset-react": "^6.24.1",
     "bootstrap": "^5.2.3",
     "fetch": "^1.1.0",
     "fix": "^0.0.3",
@@ -38,6 +40,8 @@
     "@types/react": "^18.0.24",
     "@types/react-dom": "^18.0.8",
     "@vitejs/plugin-react": "^2.2.0",
+    "parcel-bundler": "^1.12.5",
+    "typescript": "^4.9.4",
     "vite": "^4.0.2"
   }
 }

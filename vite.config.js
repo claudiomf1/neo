@@ -16,18 +16,18 @@ export default defineConfig({
     outDir: path.resolve(__dirname, "dist/apps-script"),
     // Define as opções de otimização de dependências
     optimizeDeps: {
-      include: ["src/main.jsx"],
+      include: ["src/index.html"],
 
-      input: path.resolve(__dirname, "src/main.jsx"),
+      input: path.resolve(__dirname, "src/index.html"),
     },
     // Define as opções do rollup para o build
     rollupOptions: {
       // Define o arquivo de entrada do build
-      input: path.resolve(__dirname, "src/main.jsx"),
+      input: path.resolve(__dirname, "src/index.html"),
       // Adiciona a opção --mode=development para desativar otimizações e habilitar o modo de desenvolvimento
       mode: "development",
       // Adiciona a opção --fresh para desativar o cache e forçar o Vite a recriar todo o projeto a partir do zero
-      fresh: true,
+      //  fresh: true,
       // Adiciona a opção --no-sourcemap para desativar a geração de mapas de código-fonte
       sourcemap: false,
     },

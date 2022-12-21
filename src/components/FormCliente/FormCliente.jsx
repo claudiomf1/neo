@@ -1,25 +1,24 @@
-import './EstiloFormCliente.scss'
+import "./EstiloFormCliente.scss";
 
-import { dadosct } from './FormCliente-js'
+import { dadosct } from "./FormCliente-js";
 // import "./FormCliente-js.js";
-import Form from 'react-bootstrap/Form'
-import Button from 'react-bootstrap/Button'
-import SelectSourch from '../SelectSearch/SelectSearch'
-
-import useGoogleSheets from 'use-google-sheets'
-import { useState } from 'react'
-const { VITE_API_KEY, VITE_SHEET_ID } = import.meta.env
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import SelectSourch from "../SelectSearch/SelectSearch";
+import useGoogleSheets from "use-google-sheets";
+import { useState } from "react";
+//const { VITE_API_KEY, VITE_SHEET_ID } = import.meta.env;
 //require('use-google-sheets')
 let initialData = [
-  ['Selecione'],
-  ['Claudio'],
-  ['Augusto'],
-  ['Programadores'],
-  ['Irmaos'],
-  ['Vanguarda'],
-  ['Farinha'],
-  ['Felicidade']
-]
+  ["Selecione"],
+  ["Claudio"],
+  ["Augusto"],
+  ["Programadores"],
+  ["Irmaos"],
+  ["Vanguarda"],
+  ["Farinha"],
+  ["Felicidade"],
+];
 
 //
 function FormCliente() {
@@ -27,21 +26,21 @@ function FormCliente() {
   const {
     data: response,
     loading,
-    error
+    error,
   } = useGoogleSheets({
-    apiKey: VITE_API_KEY,
-    sheetId: VITE_SHEET_ID,
-    sheetsOptions: [{ id: 'Clientes', headerRowIndex: 4, range: 'C6:C7' }]
-  })
+    apiKey: "AIzaSyDs11gmvAQb2xdRL_fWVvhrTRKyz4NoZ5w",
+    sheetId: "1DHcDn2eTzk6VNa3x3fhQ1X_RgTpGHfV09VWxHD2gk54",
+    sheetsOptions: [{ id: "Clientes", headerRowIndex: 4, range: "C6:C7" }],
+  });
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error!</div>
+    return <div>Error!</div>;
   }
-  console.log('response =>', response)
-  const [{ data }] = response
+  console.log("response =>", response);
+  const [{ data }] = response;
 
   return (
     <Form>
@@ -52,7 +51,10 @@ function FormCliente() {
           <div id="RodapeMsg"></div>
         </div>
       </div>
-      <SelectSourch titulo="Escolha um cliente" initialData={data.map(c => [c.CLIENTE])} />
+      <SelectSourch
+        titulo="Escolha um cliente"
+        initialData={data.map((c) => [c.CLIENTE])}
+      />
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Clientes</Form.Label>
         <Form.Control type="email" placeholder="Enter cliente" />
@@ -92,20 +94,22 @@ function FormCliente() {
         <div className="Row">
           <div
             style={{
-              position: 'absolute',
-              top: '300px',
-              right: '123px'
-            }}></div>
+              position: "absolute",
+              top: "300px",
+              right: "123px",
+            }}
+          ></div>
           <div className="col s12">
             <br />
             <br />
             <br />
             <br />
-            <Button variant="primary">Limpar</Button> <Button variant="success">Salvar</Button>{' '}
+            <Button variant="primary">Limpar</Button>{" "}
+            <Button variant="success">Salvar</Button>{" "}
           </div>
         </div>
       </div>
     </Form>
-  )
+  );
 }
-export default FormCliente
+export default FormCliente;

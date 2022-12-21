@@ -1,0 +1,42 @@
+// Importa a biblioteca do NodeJS 'path'
+const path = require("path");
+console.log("Arquivo de configuração do Parcel está sendo lido!");
+// Exporta as configurações do Parcel como um módulo
+module.exports = {
+  // Define a entrada do projeto como sendo o arquivo ./src/index.html
+  entry: "./src/index.html",
+  // Define as configurações de saída do projeto
+  output: {
+    // Define o diretório de saída como sendo o diretório atual (__dirname) mais 'dist'
+    path: path.resolve(__dirname, "dist/apps-script"),
+    // Define o nome do arquivo de saída como sendo 'bundle.js'
+    filename: "bundle.js",
+  },
+  // Define as configurações de módulo do projeto
+  module: {
+    // Define as regras de processamento para os módulos do projeto
+    rules: [
+      // Regra para processar arquivos .js e .jsx
+      {
+        // Aplica esta regra a todos os arquivos com a extensão .js ou .jsx
+        test: /\.jsx?$/,
+        // Exclui os arquivos presentes no diretório 'node_modules' da aplicação desta regra
+        exclude: /node_modules/,
+        // Usa o loader 'babel-loader' para processar os arquivos
+        use: {
+          loader: "babel-loader",
+          // Define as opções do 'babel-loader' como sendo o preset '@babel/preset-react'
+          options: {
+            presets: ["@babel/preset-react"],
+          },
+        },
+      },
+    ],
+  },
+  // Adiciona as opções --no-minify, --no-cache e --no-source-maps
+  options: {
+    minify: false,
+    cache: false,
+    sourceMaps: false,
+  },
+};
