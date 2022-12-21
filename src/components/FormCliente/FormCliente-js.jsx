@@ -34,7 +34,7 @@ let TituloMsg = document.getElementById("TituloMsg");
 let CorpoMsg = document.getElementById("CorpoMsg");
 let RodapeMsg = document.getElementById("RodapeMsg");
 let BtnFechar =
-  '<button class = "orange" onclick= "Fechar()" style = "cursor:pointer" ><b> <font color= "black" size = "5">Fechar</font></b></button>';
+  '<button class = "orange"    onclick= "Fechar()" style = "cursor:pointer" ><b> <font color= "black" size = "5">Fechar</font></b></button>';
 
 function caixaMsgbox(m) {
   CaixaMsg.style.display = "block";
