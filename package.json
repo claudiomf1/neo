@@ -6,9 +6,10 @@
   "main": "src/main.jsx",
   "scripts": {
     "dev": "vite --https=false",
-    "build": "rm -r dist/apps-scripts && rsync -a appsscript.json dist/apps-scripts/ && parcel build src/main.jsx --no-minify --public-url ./ --out-dir dist/apps-scripts --cache-dir .cache",
+    "build": "rm -r dist/apps-scripts && rsync -a appsscript.json dist/apps-scripts/ && parcel build src/index.html --no-minify --public-url ./ --out-dir dist/apps-scripts --cache-dir .cache",
     "preview": "vite preview",
-    "refresh": "rm -rf node_modules && npm i"
+    "refresh": "rm -rf node_modules && npm i",
+    "clasp push": "clasp push"
   },
   "dependencies": {
     "@snyk/protect": "^1.1071.0",
