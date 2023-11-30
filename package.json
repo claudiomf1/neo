@@ -26,7 +26,7 @@
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
     "react-loader-spinner": "^5.3.4",
-    "react-query": "^3.39.2",
+    "react-query": "^4.0.0",
     "react-router-dom": "^6.4.5",
     "redux-saga": "^1.2.2",
     "require": "^0.4.4",
